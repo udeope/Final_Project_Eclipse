@@ -1,0 +1,10 @@
+com\criCoinWeb\UserPojo.class
+launch\Main.class
+com\criCoinWeb\CoinTest.class
+com\criCoinController\UserController.class
+com\criCoinWeb\CoinDAO.class
+servlet\HelloServlet.class
+com\criCoinWeb\CoinPojo.class
+com\criCoinWeb\WalletPojo.class
+com\criCoinWeb\UserDAO.class
+com\criCoinWeb\WalletDAO.class
