@@ -13,17 +13,12 @@ public class WalletDAO {
     private int max_records = 1000;
  
     public WalletDAO() {
-        try {
-            
+        try {            
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto_final", "root", "");
- 
-            System.out.println("ok");
-            
+            con = DriverManager.getConnection("jdbc:mysql://db-mysql-final-project-do-user-9229440-0.b.db.ondigitalocean.com:25060/proyecto_final", "luis", "z3rxgvnbrigspt5b");   
         } catch (Exception ex) {
             System.out.println(ex);
         }
-
     }
     
     public WalletPojo getWallet(int id) {
@@ -37,8 +32,7 @@ public class WalletDAO {
              
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-            	res = new WalletPojo(rs.getInt("id_wallet"),rs.getDouble("total_coin"),rs.getInt("id_user"),rs.getInt("id_coin"), moneda.getCoin(rs.getInt("id_coin")));
-                
+            	res = new WalletPojo(rs.getInt("id_wallet"),rs.getDouble("total_coin"),rs.getInt("id_user"),rs.getInt("id_coin"), moneda.getCoin(rs.getInt("id_coin")));               
             }
             
              
@@ -73,15 +67,13 @@ public class WalletDAO {
 
     public int addWallet(WalletPojo wallet) {
         try {
-            String sql = "insert into wallet (id_user,id_coin) values (?,?)";
+            String sql = "insert into wallet (id_user,id_coin,total_coin) values (?,?,?)";
             PreparedStatement stmt = con.prepareStatement(sql);
  
             stmt.setInt(1, wallet.getId_user());
             stmt.setInt(2, wallet.getId_coin());
-            
-            
-            
- 
+            stmt.setDouble(3, wallet.getTotal_coin());
+                      
             int res = stmt.executeUpdate();
             return res;
         } catch (Exception ex) {
@@ -108,7 +100,7 @@ public class WalletDAO {
     
     public int updateWallet(WalletPojo wallet, int id) {
         try {
-            String sql = "update user set id_user=?, id_coin=? where id_wallet=?";
+            String sql = "update wallet set id_user=?, id_coin=? where id_wallet=?";
             PreparedStatement stmt = con.prepareStatement(sql);
  
             stmt.setInt(1, wallet.getId_user());
@@ -121,7 +113,47 @@ public class WalletDAO {
             return -1;
         }
 	
-}
+    } 
+   
+    public int updateWallet(double total_coin,int coin, int id) {
+        try {
+            String sql = "update wallet set total_coin=? where id_coin=? and id_user=?";
+            
+            PreparedStatement stmt = con.prepareStatement(sql);
+ 
+            stmt.setDouble(1, total_coin);
+            stmt.setInt(2, coin);
+            stmt.setInt(3, id);
+ 
+            int res = stmt.executeUpdate();
+            return res;
+        } catch (Exception ex) {
+            System.out.println(ex);
+            return -1;
+        }
+	
+    } 
+    
+    public int getIdWallet(String name, int id_user) {
+    	try {
+            String sql = "select id_wallet from wallet,coin where wallet.id_coin=coin.id_coin and name=? and id_user=?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+ 
+            stmt.setString(1, name);
+            stmt.setInt(2, id_user);
+            
+ 
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+            	return rs.getInt("id_wallet");       
+            }
+            
+            return 0;
+        } catch (Exception ex) {
+            System.out.println(ex);
+            return -1;
+        }
+    }
     
 
 }

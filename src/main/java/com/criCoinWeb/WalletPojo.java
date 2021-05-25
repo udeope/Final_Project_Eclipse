@@ -5,8 +5,7 @@ private int id_wallet;
 private double total_coin;
 private int id_user;
 private int id_coin;
-
-public CoinPojo moneda;
+private CoinPojo moneda;
 
 public WalletPojo(int id_wallet, double total_coin, int id_user, int id_coin, CoinPojo moneda) {
 	super();

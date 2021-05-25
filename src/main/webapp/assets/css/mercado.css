@@ -1,0 +1,64 @@
+
+
+.mercado-bienvenido{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 32px;
+}
+
+.mercado-container{
+	display: flex;
+}
+
+.mercado-big-container{
+/* 	display: none */
+}
+
+.mercado-coin-graph{
+/* 	display: none; */
+}
+.mercado-coin-list{
+/* 	display: none; */
+}
+
+.mercado-coin-conversor{
+/*     display: none */
+}
+
+.mercado-suite{
+	height: 500px;
+	width: 500px;
+	border: 1px solid;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    margin: 0;
+    padding: 0;
+    
+}
+
+a.active.nav-link{
+	background-color: #FFDF08!important;
+	}
+	
+.mercbox{
+	background-color: #FFDF08;
+}
+.nav-item,
+a.nav-link{
+	background-color: white;
+	color:#7244CB;
+}
+
+.input-group-text{
+	background-color:#7244CB;
+	color:white;
+}
+.comVen{
+	background-color:#7244CB;
+	color: white;
+	
+}

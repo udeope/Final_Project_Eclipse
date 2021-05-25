@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html lang="es">
 
 <head>
@@ -24,17 +26,52 @@
 
 <body style="opacity: 1;filter: blur(0px);">
     <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" data-aos="fade" style="filter: blur(0px);opacity: 0.90;">
-        <div class="container-fluid"><a class="navbar-brand" href="#"><img src="assets/img/Main%20logo.png" style="width: 149px;margin: 9px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse justify-content-end" id="navcol-1"><span class="navbar-text actions"> <a class="login" href="login.jsp">Iniciar sesi�n</a><a class="btn btn-light action-button" role="button" data-bss-hover-animate="pulse" href="register.jsp" style="background: #ffdf08;color: rgb(0,0,0);">Registrarse</a><a class="login" href="#" style="margin-left: 15px;">EUR</a></span></div>
+        <div class="container-fluid"><a class="navbar-brand" href="index.jsp"><img src="assets/img/Main%20logo.png" style="width: 149px;margin: 9px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse justify-content-end" id="navcol-1">
+            <span class="navbar-text actions">
+            	<a class="login" href="mercado.jsp">Mercado&nbsp;</a>
+            	<a class="login" href="blog.jsp">Blog&nbsp;</a>
+				<a class="login" href="About.jsp">About&nbsp;</a>
+				<a class="login" href="./controller?accion=ranking">Ranking&nbsp;</a>
+				
+				
+            <%if(session.getAttribute("user")=="" || session.getAttribute("user")==null){ %>
+	           		<a class="login" href="login.jsp">Iniciar sesion</a>
+	           		<a class="btn btn-light action-button" type="submit" role="button" data-bss-hover-animate="pulse" href="register.jsp" style="background: #ffdf08;color: rgb(0,0,0);">Registrarse</a>
+          	<%} else{ %>
+            		<a class="btn btn-light action-button" href="./controller?accion=cerrarSesion" role="button" data-bss-hover-animate="pulse" href="register.jsp" style="background: #ffdf08;color: rgb(0,0,0);">Cerrar sesión</a>
+            <%} %>
+	           		<a class="login" href="#" style="margin-left: 15px;">EUR</a>
+           		</span>
+        	</div>
         </div>
     </nav>
+    
     <section data-aos="fade" class="highlight-phone" style="background: rgb(42,7,110);height: 380px;">
         <div class="container">
             <div class="row">
                 <div class="col-md-8" style="margin-top: 25px;">
                     <div class="intro">
                         <h2 style="color: var(--light);">EL EXCHANGE DE CONFIANZA </h2>
-                        <p style="color: var(--light);">En CriCoin te damos el cambio m�s justo. Somos lideres del sector. &nbsp;</p><input type="email" style="border-radius: 5px;margin-right: 13px;margin-bottom: 10px;"><a class="btn btn-primary" role="button" href="register.jsp" style="background: #ffdf08;border-radius: 15px;color: var(--gray-dark);">Registrarse</a>
+                        <p style="color: var(--light);">En CriCoin te damos el cambio más justo. Somos lideres del sector. &nbsp;</p>
+                        
+                        <%if(session.getAttribute("user")==""  || session.getAttribute("user")==null){ %>
+                        
+                        <form action="./controller?accion=insertarEmail" method="POST" id="idForm" onsubmit="return validateIndexEmail()" name="myForm">
+                            <div class="form-group">
+	                        <input type="text" name ="email" id="inputEmail" style="border-radius: 5px;margin-right: 13px;margin-bottom: 10px;">
+	                        <button id="submit" type="submit" class="btn btn-primary" role="button"  style="background:  #ffdf08;border-radius: 15px; color: var(--gray-dark);">Registrarse</button>
+                            <div class="invalid-feedback text-white" id="errorEmail"></div>
+                            <h6><c:out value="${mensaje}" /></h6>  
+                        </div>             
+                        </form>
+                        
+                        <%}else{ %>
+                        	<h3 class="main-bienvenido-h3">Bienvenido <span><c:out value="${user.nick}"/></span></h3>
+                        	<span class="navbar-text actions">
+            					<a class="btn btn-light action-button" href="editProfile.jsp" role="button" data-bss-hover-animate="pulse"  style="background: #ffdf08;color: rgb(0,0,0);">Perfil</a>
+           					</span>
+                        <%} %>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -46,7 +83,7 @@
     <section data-aos="fade" style="margin-top: 43px;margin-bottom: 56px;">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-sm-6 mt-4"><a href="#"><img data-bss-hover-animate="pulse" src="assets/img/bitcoin-3132574_640.jpg" style="width: 100%;height: auto;box-shadow: 0px 0px 20px rgb(152,152,153);border-radius: 5px;"></a></div>
+                <div class="col-lg-3 col-sm-6 mt-4"><a href="editarPrueba.jsp"><img data-bss-hover-animate="pulse" src="assets/img/bitcoin-3132574_640.jpg" style="width: 100%;height: auto;box-shadow: 0px 0px 20px rgb(152,152,153);border-radius: 5px;"></a></div>
                 <div class="col-lg-3 col-sm-6 mt-4"><a href="#"><img data-bss-hover-animate="pulse" src="assets/img/bitcoin-1813503_640.jpg" style="width: 100%;height: auto;box-shadow: 0px 0px 20px var(--secondary);border-radius: 5px;"></a></div>
                 <div class="col-lg-3 col-sm-6 mt-4"><a href="#"><img data-bss-hover-animate="pulse" src="assets/img/crypto-3569795_640.jpg" style="width: 100%;height: auto;box-shadow: 0px 0px 20px var(--secondary);border-radius: 5px;"></a></div>
                 <div class="col-lg-3 col-sm-6 mt-4"><a href="#"><img data-bss-hover-animate="pulse" src="assets/img/analytics-3088958_640.jpg" style="background-size: cover;width: 100%;height: auto;box-shadow: 0px 0px 20px var(--secondary);border-radius: 5px;"></a></div>
@@ -58,34 +95,23 @@
             <div class="row">
                 <div class="col-lg-3 col-sm-6 mt-4"><a href="#">
                         <div class="card">
-                            <div class="card-body shadow" data-aos="fade" style="color: rgb(0,0,0);border-radius: 5px;">
-                                <h4 class="card-title" style="color: #000000;"><i class="fa fa-bitcoin" style="color: #ffdf08;"></i>&nbsp;BNB/EUR</h4>
-                                <p class="card-text" style="color: rgb(0, 0, 0);">Nullam id dolor id nibh ultricies vehicula ut id elit.</p><a class="card-link" href="#"><i class="fa fa-arrow-circle-right" style="color: #ffdf08;"></i></a>
-                            </div>
+                            <div style="width: 250px; height:220px; background-color: #FFFFFF; overflow:hidden; box-sizing: border-box; border: 1px solid rgb(42,7,110)
+; border-radius: 4px; text-align: right; line-height:14px; block-size:220px; font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #56667F;padding:1px;padding: 0px; margin: 0px;"><div style="height:200px; padding:0px; margin:0px; width: 100%;"><iframe src="https://widget.coinlib.io/widget?type=single_v2&theme=light&coin_id=859&pref_coin_id=1505" width="250" height="196px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;line-height:14px;"></iframe></div></div>
                         </div>
                     </a></div>
                 <div class="col-lg-3 col-sm-6 mt-4"><a href="#">
                         <div class="card">
-                            <div class="card-body shadow" data-aos="fade" style="color: rgb(0,0,0);border-radius: 5px;">
-                                <h4 class="card-title" style="color: #000000;"><i class="fa fa-bitcoin" style="color: #ffdf08;"></i>&nbsp;BNB/EUR</h4>
-                                <p class="card-text" style="color: rgb(0, 0, 0);">Nullam id dolor id nibh ultricies vehicula ut id elit.</p><a class="card-link" href="#"><i class="fa fa-arrow-circle-right" style="color: #ffdf08;"></i></a>
-                            </div>
+                            <div style="width: 250px; height:220px; background-color: #FFFFFF; overflow:hidden; box-sizing: border-box; border: 1px solid #56667F; border-radius: 4px; text-align: right; line-height:14px; block-size:220px; font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #56667F;padding:1px;padding: 0px; margin: 0px;"><div style="height:200px; padding:0px; margin:0px; width: 100%;"><iframe src="https://widget.coinlib.io/widget?type=single_v2&theme=light&coin_id=145&pref_coin_id=1505" width="250" height="196px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;line-height:14px;"></iframe></div></div>
                         </div>
                     </a></div>
                 <div class="col-lg-3 col-sm-6 mt-4"><a href="#">
                         <div class="card">
-                            <div class="card-body shadow" data-aos="fade" style="color: rgb(0,0,0);border-radius: 5px;">
-                                <h4 class="card-title" style="color: #000000;"><i class="fa fa-bitcoin" style="color: #ffdf08;"></i>&nbsp;BNB/EUR</h4>
-                                <p class="card-text" style="color: rgb(0, 0, 0);">Nullam id dolor id nibh ultricies vehicula ut id elit.</p><a class="card-link" href="#"><i class="fa fa-arrow-circle-right" style="color: #ffdf08;"></i></a>
-                            </div>
+                            <div style="width: 250px; height:220px; background-color: #FFFFFF; overflow:hidden; box-sizing: border-box; border: 1px solid #56667F; border-radius: 4px; text-align: right; line-height:14px; block-size:220px; font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #56667F;padding:1px;padding: 0px; margin: 0px;"><div style="height:200px; padding:0px; margin:0px; width: 100%;"><iframe src="https://widget.coinlib.io/widget?type=single_v2&theme=light&coin_id=1209&pref_coin_id=1505" width="250" height="196px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;line-height:14px;"></iframe></div></div>
                         </div>
                     </a></div>
                 <div class="col-lg-3 col-sm-6 mt-4"><a href="#">
                         <div class="card">
-                            <div class="card-body shadow" data-aos="fade" style="color: rgb(0,0,0);border-radius: 5px;">
-                                <h4 class="card-title" style="color: #000000;"><i class="fa fa-bitcoin" style="color: #ffdf08;"></i>&nbsp;BNB/EUR</h4>
-                                <p class="card-text" style="color: rgb(0, 0, 0);">Nullam id dolor id nibh ultricies vehicula ut id elit.</p><a class="card-link" href="#"><i class="fa fa-arrow-circle-right" style="color: #ffdf08;"></i></a>
-                            </div>
+                            <div style="width: 250px; height:220px; background-color: #FFFFFF; overflow:hidden; box-sizing: border-box; border: 1px solid #56667F; border-radius: 4px; text-align: right; line-height:14px; block-size:220px; font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #56667F;padding:1px;padding: 0px; margin: 0px;"><div style="height:200px; padding:0px; margin:0px; width: 100%;"><iframe src="https://widget.coinlib.io/widget?type=single_v2&theme=light&coin_id=280&pref_coin_id=1505" width="250" height="196px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;line-height:14px;"></iframe></div></div>
                         </div>
                     </a></div>
             </div>
@@ -99,15 +125,16 @@
             <div class="row articles">
                 <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid shadow" src="assets/img/chart-2779132_640.jpg" style="border-radius: 5px;"></a>
                     <h3 class="name">Aprende a tradear</h3>
-                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p><a class="action" href="#"><i class="fa fa-arrow-circle-right" style="color: #ffdf08;"></i></a>
+                    <p class="description">Con nuestro curso rápido de inversión en Criptodivisas aprenderás a tradear en un tiempo record y con la mayor de las seguridades. Garantizado.</p><a class="action" href="#"><i class="fa fa-arrow-circle-right" style="color: #ffdf08;"></i></a>
+                    
                 </div>
                 <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid shadow" src="assets/img/stock-1863880_640.jpg" style="border-radius: 5px;"></a>
                     <h3 class="name">Aprende BlockChain </h3>
-                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p><a class="action" href="#"><i class="fa fa-arrow-circle-right" style="color: #ffdf08;"></i></a>
+                    <p class="description">No te saltes este fantástico curso sobre BlockChain, la tecnología que hay detrás de este innovador y lucrativo mercado de Criptodivisas. </p><a class="action" href="#"><i class="fa fa-arrow-circle-right" style="color: #ffdf08;"></i></a>
                 </div>
                 <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid shadow" src="assets/img/mathematics-3821034_640.jpg" style="border-radius: 5px;"></a>
-                    <h3 class="name">�C�mo funciona CriCoin?</h3>
-                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p><a class="action" href="#"><i class="fa fa-arrow-circle-right" style="color: #ffdf08;"></i></a>
+                    <h3 class="name">¿Cómo funciona CriCoin?</h3>
+                    <p class="description">A pesar de ser uno de los exchange más intuitivos de la red, en este cusillo rápido, te llevaremos de la mano en un completo recorrido de nuestra plataforma.</p><a class="action" href="#"><i class="fa fa-arrow-circle-right" style="color: #ffdf08;"></i></a>
                 </div>
             </div>
         </div>
@@ -137,13 +164,14 @@
                 </div>
                 <div class="col item social"><a href="#" style="color: #ffdf08;"><i class="icon ion-social-facebook"></i></a><a href="#" style="color: #ffdf08;"><i class="icon ion-social-twitter"></i></a><a href="#" style="color: #ffdf08;"><i class="icon ion-social-snapchat"></i></a><a href="#" style="color: #ffdf08;"><i class="icon ion-social-instagram"></i></a></div>
             </div>
-            <p class="copyright"><i class="fa fa-rocket"></i>&nbsp;CriCoin � 2021</p>
+            <p class="copyright"><i class="fa fa-rocket"></i>&nbsp;CriCoin © 2021</p>
         </div>
     </footer>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="assets/js/index.js"></script>
 </body>
 
 </html>

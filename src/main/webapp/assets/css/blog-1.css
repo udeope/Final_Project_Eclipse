@@ -1,0 +1,98 @@
+main {
+  position: relative;
+  padding: 0.4vw;
+  vertical-align: baseline;
+  margin-bottom: 50px;
+}
+
+main a {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  font-style: inherit;
+  vertical-align: baseline;
+  text-decoration: none;
+  color: inherit;
+}
+
+main a:hover, main a:active, main a:link, main a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+main .inner {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
+  -moz-column-count: 3;
+  -webkit-column-count: 3;
+  column-count: 3;
+  -moz-column-width: 23rem;
+  -webkit-column-width: 23rem;
+  column-width: 23rem;
+  -moz-column-gap: 0;
+  -webkit-column-gap: 0;
+  column-gap: 0;
+}
+
+@media (min-width: 640px) {
+  main .inner {
+    margin: -70px auto;
+  }
+}
+
+main .inner article {
+  padding: 0 15px;
+  overflow: hidden;
+  min-height: 300px;
+  text-align: left;
+  -moz-page-break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  break-inside: avoid;
+}
+
+main .inner article .list-card {
+  padding: 10px 15px;
+  margin: 0 20px 40px;
+  min-height: 300px;
+  background: #fff 50%;
+  background-size: cover;
+  border-radius: 6px;
+  border: 1px rgba(220,220,220,0.9) solid;
+  box-shadow: 8px 14px 38px rgba(39,44,49,.06), -1px -3px 8px rgba(39,44,49,.03);
+  transition: all .5s ease;
+}
+
+main .inner article .list-card:hover {
+  box-shadow: 1px 1px 1px rgba(39,44,49,.1), 1px 3px 16px rgba(39,44,49,.07);
+  transition: all .3s ease;
+  transform: translate3D(0px,5px,0px);
+}
+
+main .inner article .list-card a {
+  vertical-align: baseline;
+}
+
+main .inner article .list-card a span {
+  display: block;
+  width: 100%;
+  left: 0px;
+  padding: 5px 0px;
+  text-align: left;
+  color: rgb(122,148,162);
+  font-size: 0.9rem;
+}
+
+main .inner article .list-card a p {
+  padding-bottom: 10px;
+  font-size: 0.85rem;
+  overflow: hidden;
+}
+
+main .inner article .author a {
+  color: rgb(38,168,237);
+  font-size: 0.9rem;
+}
+

@@ -1,0 +1,8 @@
+.row{
+    display: flex;
+    justify-content: center
+}
+
+.container{
+    margin-bottom: 3em
+}

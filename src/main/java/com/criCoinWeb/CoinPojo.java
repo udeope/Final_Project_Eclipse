@@ -4,9 +4,9 @@ public class CoinPojo {
 private int id_coin;
 private String name;
 private String siglas;
-private Double price;
+private double price;
 
-public CoinPojo(int id_coin, String name, String siglas, Double price) {
+public CoinPojo(int id_coin, String name, String siglas, double price) {
 	super();
 	this.id_coin = id_coin;
 	this.name = name;
