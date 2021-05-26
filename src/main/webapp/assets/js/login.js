@@ -2,16 +2,16 @@
 const form = document.getElementById('login');
 
 function loginValidate() {
-	let acumErrores = 0;
+	var acumErrores = 0;
 	
 	form.classList.remove('is-invalid');
 	
     
-	let inputEmail = document.getElementById('inputEmail');
-	let inputPassword = document.getElementById('inputPassword');
+	var inputEmail = document.getElementById('inputEmail');
+	var inputPassword = document.getElementById('inputPassword');
 	
-	let inputEmail = document.forms["log"]["inputEmail"];
-	let inputPassword = document.forms["log"]["inputPassword"];
+	var inputEmail = document.forms["log"]["inputEmail"];
+	var inputPassword = document.forms["log"]["inputPassword"];
 
 	if(inputEmail.value == "") {
 		inputEmail.classList.add("is-invalid");
@@ -23,9 +23,9 @@ function loginValidate() {
 		acumErrores ++;
 	} 
 
-	let lcl = /[a-z]/g;
-	let ucl = /[A-Z]/g;
-	let numbers = /[0-9]/g;
+	var lcl = /[a-z]/g;
+	var ucl = /[A-Z]/g;
+	var numbers = /[0-9]/g;
 
     if(inputPassword.value == "") {
 		inputPassword.classList.add("is-invalid");
@@ -64,6 +64,6 @@ form.addEventListener('blur', (event) => {
 }, true);
 
 function validar_email(email) {
-	let regex = /^([ña-zA-Z0-9_\.\-])+\@(([ña-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	var regex = /^([ña-zA-Z0-9_\.\-])+\@(([ña-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 	return regex.test(email) ? true : false;
 }
